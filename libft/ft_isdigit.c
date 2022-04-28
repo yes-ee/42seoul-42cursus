@@ -6,11 +6,11 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 16:25:44 by yeselee           #+#    #+#             */
-/*   Updated: 2022/04/16 16:29:55 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/04/28 21:26:57 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
