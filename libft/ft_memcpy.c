@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 21:24:58 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/08 14:20:01 by yeselee          ###   ########.fr       */
+/*   Created: 2022/05/08 16:03:43 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/08 18:22:12 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+void	ft_memcpy(void *restrict dest, const void *restrict src, size_t n)
 {
-	if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
+	
 }

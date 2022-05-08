@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 21:24:58 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/08 14:20:01 by yeselee          ###   ########.fr       */
+/*   Created: 2022/05/08 15:02:35 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/08 16:02:40 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+void	*ft_bzero(void *s, size_t n)
 {
-	if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
+	size_t	i;
+	unsigned char	*temp;
+
+	i = 0;
+	temp = (unsigned char *)s;
+	while (i < n)
+	{
+		temp[i] = 0;
+		i++;
+	}
+	return (s);
 }

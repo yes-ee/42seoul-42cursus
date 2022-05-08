@@ -1,8 +1,33 @@
-size_t	strlcat(char *dest, const char *src, size_t size)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/08 14:36:41 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/08 14:48:18 by yeselee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+static size_t	ft_strlen(const char *s)
 {
-	unsigned int	dest_len;
-	unsigned int	src_len;
-	unsigned int	i;
+	size_t	count;
+
+	count = 0;
+	while (*s != '\0')
+	{
+		count++;
+		s++;
+	}
+	return (count);
+}
+
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
+{
+	size_t	dest_len;
+	size_t	src_len;
+	size_t	i;
 
 	dest_len = ft_strlen(dest);
 	src_len = ft_strlen(src);
@@ -15,5 +40,5 @@ size_t	strlcat(char *dest, const char *src, size_t size)
 		i++;
 	}
 	dest[dest_len + i] = '\0';
-	return (dest_len + src_len);	
+	return (dest_len + src_len);
 }
