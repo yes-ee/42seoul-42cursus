@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:52:47 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/12 17:54:00 by yeselee          ###   ########.fr       */
+/*   Created: 2022/05/12 22:35:43 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/12 22:44:33 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*temp;
-	char	*l;
-	int		check;
+	size_t		i;
+	char		*new_s;
 
-	temp = (char *)s;
-	check = 0;
-	if (ft_strncmp(s, "", 1) == 0)
-		return (temp);
-	while (*temp != '\0')
+	i = 0;
+	new_s = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!new_s)
+		return (0);
+	while (s[i] != '\0')
 	{
-		if (*temp == (unsigned char)c)
-		{
-			l = temp;
-			check = 1;
-		}
-		temp++;
+		new_s[i] = f((unsigned int)i, s[i]);
+		i++;
 	}
-	if (*temp == (unsigned char)c)
-		return (temp);
-	if (check == 1)
-		return (l);
-	return (0);
+	new_s[i] = '\0';
+	return (new_s);
 }

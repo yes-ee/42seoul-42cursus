@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:52:47 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/12 17:54:00 by yeselee          ###   ########.fr       */
+/*   Created: 2022/05/12 19:07:33 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/12 19:34:14 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*temp;
-	char	*l;
-	int		check;
+	size_t		front;
+	size_t		end;
+	char		*p;
 
-	temp = (char *)s;
-	check = 0;
-	if (ft_strncmp(s, "", 1) == 0)
-		return (temp);
-	while (*temp != '\0')
-	{
-		if (*temp == (unsigned char)c)
-		{
-			l = temp;
-			check = 1;
-		}
-		temp++;
-	}
-	if (*temp == (unsigned char)c)
-		return (temp);
-	if (check == 1)
-		return (l);
-	return (0);
+	front = 0;
+	end = ft_strlen(s1);
+	while (s1[front] != '\0' && ft_strchr(set, s1[front]))
+		front++;
+	while ((end != front) && (end - 1 != front) && ft_strchr(set, s1[end - 1]))
+		end--;
+	p = (char *)malloc(sizeof(char) * (end - front + 1));
+	if (!p)
+		return (0);
+	ft_strlcpy(p, s1 + front, end - front + 1);
+	return (p);
 }

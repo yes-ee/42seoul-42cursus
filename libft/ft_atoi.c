@@ -1,13 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/12 15:01:21 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/12 16:15:27 by yeselee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 static int	change_num_minus(int minus, int num)
 {
-	if (num != 0)
-	{
-		if (minus % 2 == 1)
-		{
-			if (num != -2147483648)
-				num *= -1;
-		}
-	}
+	if (minus == -1)
+		num *= -1;
 	return (num);
 }
 
@@ -18,20 +24,20 @@ int	ft_atoi(const char *str)
 	int	num;
 
 	i = 0;
-	minus = 0;
+	minus = 1;
 	num = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	while (str[i] == '+' || str[i] == '-')
+	while ((*str >= 9 && *str <= 13) || str[i] == ' ')
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		if (str[i] == '-')
-			minus++;
-		i++;
+		if (*str == '-')
+			minus *= -1;
+		str++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (*str >= '0' && *str <= '9')
 	{
-		num = num * 10 + str[i] - '0';
-		i++;
+		num = num * 10 + *str - '0';
+		str++;
 	}
 	num = change_num_minus(minus, num);
 	return (num);

@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:52:47 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/12 17:54:00 by yeselee          ###   ########.fr       */
+/*   Created: 2022/05/12 18:56:12 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/12 19:05:24 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*temp;
-	char	*l;
-	int		check;
+	size_t		len1;
+	size_t		len2;
+	char		*p;
 
-	temp = (char *)s;
-	check = 0;
-	if (ft_strncmp(s, "", 1) == 0)
-		return (temp);
-	while (*temp != '\0')
-	{
-		if (*temp == (unsigned char)c)
-		{
-			l = temp;
-			check = 1;
-		}
-		temp++;
-	}
-	if (*temp == (unsigned char)c)
-		return (temp);
-	if (check == 1)
-		return (l);
-	return (0);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	p = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!p)
+		return (0);
+	ft_memcpy(p, s1, len1);
+	ft_memcpy(p + len1, s2, len2);
+	p[len1 + len2] = '\0';
+	return (p);
 }

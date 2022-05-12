@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 14:52:47 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/12 17:54:00 by yeselee          ###   ########.fr       */
+/*   Created: 2022/05/12 17:58:57 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/12 18:25:11 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strdup(const char *s)
 {
-	char	*temp;
-	char	*l;
-	int		check;
+	size_t		len;
+	size_t		i;
+	char		*p;
 
-	temp = (char *)s;
-	check = 0;
-	if (ft_strncmp(s, "", 1) == 0)
-		return (temp);
-	while (*temp != '\0')
+	i = 0;
+	len = ft_strlen(s);
+	p = (char *)malloc((len + 1) * sizeof(char));
+	if (!p)
+		return (0);
+	while (i < len)
 	{
-		if (*temp == (unsigned char)c)
-		{
-			l = temp;
-			check = 1;
-		}
-		temp++;
+		p[i] = s[i];
+		i++;
 	}
-	if (*temp == (unsigned char)c)
-		return (temp);
-	if (check == 1)
-		return (l);
-	return (0);
+	p[i] = '\0';
+	return (p);
 }

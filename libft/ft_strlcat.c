@@ -6,21 +6,11 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 14:36:41 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/08 14:48:18 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/12 16:07:30 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static size_t	ft_strlen(const char *s)
-{
-	size_t	count;
-
-	count = 0;
-	while (s[count] != '\0')
-	{
-		count++;
-	}
-	return (count);
-}
+#include "libft.h"
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {

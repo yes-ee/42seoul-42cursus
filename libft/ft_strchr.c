@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/12 14:48:56 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/12 16:51:07 by yeselee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 char	*ft_strchr(const char *s, int c)
 {
-	char	*temp;
-
-	temp = s;
-	while (*temp != '\0')
+	while (*s != '\0')
 	{
-		if (*temp == c)
-			return (temp);
-		temp++;
+		if (*s == c)
+			return ((char *)s);
+		s++;
 	}
+	if (c == '\0')
+		return ((char *)s);
 	return (0);
 }

@@ -6,9 +6,11 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 14:36:10 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/08 14:37:09 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/12 14:37:17 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {

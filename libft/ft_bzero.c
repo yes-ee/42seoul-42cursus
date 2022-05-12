@@ -6,13 +6,15 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 15:02:35 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/08 16:02:40 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/12 14:34:25 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	ft_bzero(void *s, size_t n)
 {
-	size_t				i;
+	size_t			i;
 	unsigned char	*temp;
 
 	i = 0;

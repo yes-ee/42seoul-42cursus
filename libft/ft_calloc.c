@@ -1,20 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/12 15:08:23 by yeselee           #+#    #+#             */
+/*   Updated: 2022/05/12 16:30:10 by yeselee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static void	ft_bzero(void *s, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t				i;
-	unsigned char	*temp;
+	void	*p;
 
-	i = 0;
-	temp = (unsigned char *)s;
-	while (i < n)
-	{
-		temp[i] = 0;
-		i++;
-	}
-}
-
-void *calloc(size_t nmemb, size_t size)
-{
-	
+	p = malloc(nmemb * size);
+	if (!p)
+		return (0);
+	ft_bzero(p, nmemb * size);
+	return (p);
 }
