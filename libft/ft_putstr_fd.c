@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 22:50:55 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/12 22:54:00 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/14 19:48:36 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	write(fd, s, ft_strlen(s));
+	while (*s != '\0')
+		write(fd, s++, 1);
 }

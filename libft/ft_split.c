@@ -6,86 +6,84 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 20:35:55 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/12 23:40:56 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/14 22:50:24 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_init_sep(char *str, char c, int *sep)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			sep[i] = 1;
-		else
-			sep[i] = 0;
-		i++;
-	}
-	sep[i] = 1;
-}
-
-void	ft_malloc_arr(char **arr, char *str, size_t str_len, size_t start)
+int	ft_malloc_arr(char **arr, char const *str, size_t str_len, size_t start)
 {
 	size_t	j;
 
 	j = 0;
 	*arr = malloc(sizeof(char) * (str_len + 1));
-	while (j++ < str_len)
+	if (!(*arr))
+		return (1);
+	while (j < str_len)
+	{
 		(*arr)[j] = str[start + j];
+		j++;
+	}
 	(*arr)[j] = '\0';
+	return (0);
 }
 
-void	ft_putstr_arr(char **arr, char *str, int *sep)
+int	ft_free_arr(char **arr, int count)
 {
-	size_t	str_len;
+	while (count--)
+		free(arr[count]);
+	free(arr);
+	return (1);
+}
+
+int	ft_putstr_arr(char **arr, char const *str, char c, int count)
+{
 	size_t	i;
 	size_t	start;
 
-	str_len = 0;
 	i = 0;
 	start = 0;
-	while (str[i++] != '\0')
+	while (str[i] != '\0')
 	{
-		if (sep[i] == 0)
-			str_len++;
-		else if (str_len > 0)
+		if (str[i] == c)
 		{
-			ft_malloc_arr(arr, str, str_len, start);
+			if (i - start > 0)
+				if (ft_malloc_arr(&(arr[count++]), str, i - start, start) == 1)
+					return (ft_free_arr(arr, count - 1));
 			start = i + 1;
-			str_len = 0;
-			arr++;
 		}
-		else
-			start = i + 1;
+		i++;
 	}
-	if (str_len > 0)
-		ft_malloc_arr(arr, str, str_len, start);
+	if (i - start > 0)
+		if (ft_malloc_arr(&(arr[count++]), str, i - start, start) == 1)
+			return (ft_free_arr(arr, count - 1));
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	word_count;
-	int		*sep;
-	char	*arr;
+	size_t	count;
+	char	**arr;
 
 	i = 0;
 	word_count = 0;
-	sep = malloc(sizeof(int) * (ft_strlen(s) + 1));
-	ft_init_sep(s, c, sep);
-	if (sep[0] == 0)
+	count = 0;
+	if ((s[0] != c) && s[0] != '\0')
 		word_count++;
 	while (s[i] != '\0')
 	{
-		if (sep[i] == 1 && sep[i + 1] == 0)
+		if ((s[i] == c) && (s[i + 1] != c))
 			word_count++;
+		i++;
 	}
 	arr = malloc(sizeof(char *) * (word_count + 1));
-	ft_putstr_arr(arr, s, sep);
+	if (!arr)
+		return (0);
+	if (ft_putstr_arr(arr, s, c, count) == 1)
+		return (0);
 	arr[word_count] = 0;
 	return (arr);
 }
