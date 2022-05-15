@@ -38,10 +38,10 @@ SRCS = ft_isalpha.c \
 				ft_putnbr_fd.c \
 				ft_split.c \
 
-
 all : $(NAME)
+
 $(NAME) : $(OBJS)
-	ar rc $@ $(OBJS)
+	ar crs $@ $(OBJS)
 
 %.o: %.c 
 	$(CC) $(CFLAGS) -c $< -o $@

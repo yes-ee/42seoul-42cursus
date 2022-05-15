@@ -6,21 +6,21 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 20:35:55 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/14 22:50:24 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/15 15:58:33 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_malloc_arr(char **arr, char const *str, size_t str_len, size_t start)
+static int	ft_malloc_arr(char **arr, char const *str, size_t len, size_t start)
 {
 	size_t	j;
 
 	j = 0;
-	*arr = malloc(sizeof(char) * (str_len + 1));
+	*arr = malloc(sizeof(char) * len + 1);
 	if (!(*arr))
 		return (1);
-	while (j < str_len)
+	while (j < len)
 	{
 		(*arr)[j] = str[start + j];
 		j++;
@@ -29,7 +29,7 @@ int	ft_malloc_arr(char **arr, char const *str, size_t str_len, size_t start)
 	return (0);
 }
 
-int	ft_free_arr(char **arr, int count)
+static int	ft_free_arr(char **arr, int count)
 {
 	while (count--)
 		free(arr[count]);
@@ -37,7 +37,7 @@ int	ft_free_arr(char **arr, int count)
 	return (1);
 }
 
-int	ft_putstr_arr(char **arr, char const *str, char c, int count)
+static int	ft_putstr_arr(char **arr, char const *str, char c, int count)
 {
 	size_t	i;
 	size_t	start;
@@ -75,7 +75,7 @@ char	**ft_split(char const *s, char c)
 		word_count++;
 	while (s[i] != '\0')
 	{
-		if ((s[i] == c) && (s[i + 1] != c))
+		if ((s[i] == c) && (s[i + 1] != c) && (s[i + 1] != '\0'))
 			word_count++;
 		i++;
 	}

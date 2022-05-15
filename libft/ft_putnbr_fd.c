@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 22:56:25 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/14 23:14:30 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/15 14:01:43 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_nb(int n, int fd)
 	{
 		ft_nb(n / 10, fd);
 		c = n % 10 + '0';
-		write(1, &c, 1);
+		write(fd, &c, 1);
 	}
 }
 
@@ -39,5 +39,5 @@ void	ft_putnbr_fd(int n, int fd)
 	else if (n == 0)
 		write(fd, "0", 1);
 	if (n > 0)
-		ft_nb(n ,fd);
+		ft_nb(n, fd);
 }

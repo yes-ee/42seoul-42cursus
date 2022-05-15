@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 14:36:10 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/12 14:37:17 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/15 14:18:42 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	size_t	len;
 
 	i = 0;
-	if (dest == 0|| src == 0)
-		return (0);
 	len = ft_strlen(src);
 	if (size == 0)
 		return (len);

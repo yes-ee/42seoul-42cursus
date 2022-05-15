@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 15:01:21 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/14 19:54:02 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/05/15 13:24:08 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		num = num * 10 + (*str- '0');
+		num = num * 10 + (*str - '0');
 		str++;
 	}
 	num = change_num_minus(minus, num);
