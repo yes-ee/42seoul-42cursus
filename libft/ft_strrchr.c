@@ -14,26 +14,14 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*temp;
-	char	*l;
-	int		check;
+	size_t	len;
 
-	temp = (char *)s;
-	check = 0;
-	if (ft_strncmp(s, "", 1) == 0)
-		return (temp);
-	while (*temp != '\0')
+	len = ft_strlen(s);
+	while (len >= 0)
 	{
-		if (*temp == (unsigned char)c)
-		{
-			l = temp;
-			check = 1;
-		}
-		temp++;
+		if (s[len] == (unsigned char)c)
+			return (*(s[len]));
+		len++;
 	}
-	if (*temp == (unsigned char)c)
-		return (temp);
-	if (check == 1)
-		return (l);
 	return (0);
 }

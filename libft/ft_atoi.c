@@ -36,7 +36,7 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		num = num * 10 - '0' + *str;
+		num = num * 10 + (*str- '0');
 		str++;
 	}
 	num = change_num_minus(minus, num);
