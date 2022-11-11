@@ -11,7 +11,7 @@ CLIENT_SRCS = client.c \
 SERVER_OBJS = $(SERVER_SRCS:.c=.o)
 CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 HEADER_SRCS	=	minitalk.h

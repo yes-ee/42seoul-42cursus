@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 11:56:59 by yeselee           #+#    #+#             */
-/*   Updated: 2022/10/10 18:04:22 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/11 18:26:54 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	send_msg(int pid, char *msg)
 		{
 			if ((c & 1) == 1)
 			{
-				kill(pid, SIGUSR1);
+				if (kill(pid, SIGUSR1) != 0)
+					return ;
 			}
 			else if ((c & 1) == 0)
-			{
-				kill(pid, SIGUSR2);
-			}
+				if (kill(pid, SIGUSR2) != 0)
+					return ;
 			usleep(125);
 			c = c >> 1;
 			count++;
