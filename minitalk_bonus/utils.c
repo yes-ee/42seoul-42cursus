@@ -6,11 +6,11 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 12:26:23 by yeselee           #+#    #+#             */
-/*   Updated: 2022/10/10 18:04:22 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:42:23 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minitalk.h"
+#include "minitalk.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
