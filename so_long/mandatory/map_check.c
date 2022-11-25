@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:54:20 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/24 23:36:59 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/26 01:00:41 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	first_line_check(char *line, t_map *map)
 	char	**line_split;
 
 	size = ft_strlen(line);
-	if (size <= 1)
+	if (size <= 3)
 		print_error("map error -> size error");
 	width = 0;
 	while (width < size -1)
@@ -56,7 +56,7 @@ void	middle_line_check(char *line, t_map *map)
 	map->map_line = ft_strjoin(map->map_line, line_split[0]);
 	free_all(line_split);
 	if (map-> width != size - 1)
-		print_error("map error -> map is not rectangul");
+		print_error("map error -> map is not rectangular");
 }
 
 void	last_line_check(char *line, t_map *map)
@@ -91,6 +91,8 @@ int	map_size_check(int fd, t_map *map)
 		print_error("map error -> not valid file descriptor");
 	size = 0;
 	line = get_next_line(fd);
+	if (line)
+		
 	map->width = ft_strlen(line) - 1;
 	while (line)
 	{

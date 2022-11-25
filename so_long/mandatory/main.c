@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:54:07 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/24 23:05:11 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/25 23:35:55 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	objs(t_map *map)
 			p_start++;
 		i++;
 	}
-	if (map->all_items < 1 || exits < 1 || p_start != 1)
+	if (map->all_items < 1 || exits != 1 || p_start != 1)
 		print_error("map error -> objets error");
 }
 
@@ -66,9 +66,11 @@ int	main(int argc, char **argv)
 	arg_check(argv[1]);
 	map_init(&map, argv[1]);
 	objs(&map);
-	map.mlx = mlx_init();
-	map.win = mlx_new_window(map.mlx, map.width * 64, \
-	map.height * 64, "so_long");
+	//modify
+	mlx_connect(&map);
+	// map.mlx = mlx_init();
+	// map.win = mlx_new_window(map.mlx, map.width * 64, \
+	// map.height * 64, "so_long");
 	obj_init(&map);
 	setting_img(&map);
 	mlx_hook(map.win, X_EVENT_KEY_RELEASE, 0, &press_key, &map);

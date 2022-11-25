@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yeselee <yeselee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:56:12 by yeselee           #+#    #+#             */
-/*   Updated: 2022/05/12 19:05:24 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/25 23:30:28 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memcpy(p, s1, len1);
 	ft_memcpy(p + len1, s2, len2);
 	p[len1 + len2] = '\0';
+	free((void *)s1);
 	return (p);
 }

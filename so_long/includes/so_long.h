@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:56:07 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/24 22:50:06 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/25 22:27:03 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	map_init(t_map *map, char *argv);
 
 /* mlx_utils.c */
 void	setting_img(t_map *map);
+void	mlx_connect(t_map *map);
 
 /* move.c */
 void	move_d(t_map *map);
