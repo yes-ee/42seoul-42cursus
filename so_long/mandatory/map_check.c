@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:54:20 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/26 01:00:41 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/28 20:16:57 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int	map_size_check(int fd, t_map *map)
 		print_error("map error -> not valid file descriptor");
 	size = 0;
 	line = get_next_line(fd);
-	if (line)
-		
+	if (!line)
+		print_error("map error -> not valid map size");
 	map->width = ft_strlen(line) - 1;
 	while (line)
 	{
