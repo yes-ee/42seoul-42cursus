@@ -6,7 +6,7 @@
 #    By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 20:41:57 by yeselee           #+#    #+#              #
-#    Updated: 2022/11/24 22:58:39 by yeselee          ###   ########.fr        #
+#    Updated: 2022/11/28 20:25:19 by yeselee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LFT_DIR = ./libft
 LFT_FLAG = -L$(LFT_DIR) -lft -I$(LFT_DIR)
 
 # FILES
-MPATH_SRCS	=	close.c main.c map_check.c mlx_utils.c move.c obj_init.c utils.c
+MPATH_SRCS	=	close.c main.c map_check.c mlx_utils.c move.c obj_init.c utils.c map_validate.c
 MPATH_DIR	=	mandatory/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)

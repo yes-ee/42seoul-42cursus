@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:58:13 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/25 00:58:14 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/29 23:15:55 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	objs(t_map *map)
 			p_start++;
 		i++;
 	}
-	if (map->all_items < 1 || exits < 1 || p_start != 1)
+	if (map->all_items < 1 || exits != 1 || p_start != 1)
 		print_error("map error -> objets error");
 	map->map_size = ft_strlen(map->map_line);
 }

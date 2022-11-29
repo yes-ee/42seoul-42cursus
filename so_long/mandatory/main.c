@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:54:07 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/28 20:27:06 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/29 23:09:42 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,17 @@ int	main(int argc, char **argv)
 	ft_memset(&map, 0, sizeof(t_map));
 	arg_check(argv[1]);
 	map_init(&map, argv[1]);
+	objs(&map);
 	map_validation(&map);
-	// objs(&map);
-	//modify
-	// mlx_connect(&map);
+	// modify
+	mlx_connect(&map);
 	// map.mlx = mlx_init();
 	// map.win = mlx_new_window(map.mlx, map.width * 64, \
 	// map.height * 64, "so_long");
-	// obj_init(&map);
-	// setting_img(&map);
-	// mlx_hook(map.win, X_EVENT_KEY_RELEASE, 0, &press_key, &map);
-	// mlx_hook(map.win, X_EVENT_KEY_EXIT, 0, &exit_game, &map);
-	// mlx_loop(map.mlx);
+	obj_init(&map);
+	setting_img(&map);
+	mlx_hook(map.win, X_EVENT_KEY_RELEASE, 0, &press_key, &map);
+	mlx_hook(map.win, X_EVENT_KEY_EXIT, 0, &exit_game, &map);
+	mlx_loop(map.mlx);
 	return (0);
 }

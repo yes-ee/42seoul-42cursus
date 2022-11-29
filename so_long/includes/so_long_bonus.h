@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:56:12 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/24 20:56:14 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/29 23:15:07 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ typedef struct s_obj
 	t_img		teacher[1];
 }				t_obj;
 
+typedef struct s_dir
+{
+	int	dx[4];
+	int	dy[4];
+}	t_dir;
+
 typedef struct s_map
 {
 	int				x;
@@ -63,9 +69,13 @@ typedef struct s_map
 	int				height;
 	int				all_items;
 	int				c_items;
+	int				c_check;
+	int				e_check;
 	int				walk_cnt;
 	int				map_size;
 	char			*map_line;
+	char			**valid_map;
+	char			**visit;
 	void			*mlx;
 	void			*win;
 	struct s_obj	*obj;
@@ -91,6 +101,7 @@ void	map_init(t_map *map, char *argv);
 /* mlx_utils.c */
 void	put_img(t_map *map, void *obj, int w, int h);
 void	setting_img(t_map *map);
+void	mlx_connect(t_map *map);
 
 /* move_d_bonus.c */
 void	move_d(t_map *map);
@@ -138,5 +149,8 @@ void	enemy_move_0(t_map *map, int i);
 void	enemy_move_1(t_map *map, int i);
 void	enemy_move_2(t_map *map, int i);
 void	enemy_move_3(t_map *map, int i);
+
+/* map_validate.c */
+void	map_validation(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:56:07 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/25 22:27:03 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/29 22:28:30 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ typedef struct s_obj
 	void	*s10;
 }				t_obj;
 
+typedef struct s_dir
+{
+	int	dx[4];
+	int	dy[4];
+}	t_dir;
+
 typedef struct s_map
 {
 	int				x;
@@ -58,8 +64,12 @@ typedef struct s_map
 	int				height;
 	int				all_items;
 	int				c_items;
+	int				c_check;
+	int				e_check;
 	int				walk_cnt;
 	char			*map_line;
+	char			**valid_map;
+	char			**visit;
 	void			*mlx;
 	void			*win;
 	struct s_obj	*obj;
@@ -99,5 +109,8 @@ void	obj_init(t_map *map);
 /* utils.c */
 void	free_all(char **split);
 int		press_key(int key_code, t_map *map);
+
+/* map_validate.c */
+void	map_validation(t_map *map);
 
 #endif
