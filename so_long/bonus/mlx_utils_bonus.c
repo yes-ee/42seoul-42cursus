@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:58:21 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/25 00:58:22 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/30 08:30:51 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,15 @@ void	setting_img(t_map *map)
 		while (++wid < map->width)
 			setting_img_add(map, hei, wid);
 	}	
+}
+
+void	mlx_connect(t_map *map)
+{
+	map->mlx = mlx_init();
+	if (map->mlx == 0)
+		exit(1);
+	map->win = mlx_new_window(map->mlx, map->width * 64, \
+	map->height * 64, "so_long");
+	if (map->win == 0)
+		exit(1);
 }

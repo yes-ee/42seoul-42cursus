@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 20:54:07 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/29 23:09:42 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/11/30 08:30:10 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,7 @@ int	main(int argc, char **argv)
 	map_init(&map, argv[1]);
 	objs(&map);
 	map_validation(&map);
-	// modify
 	mlx_connect(&map);
-	// map.mlx = mlx_init();
-	// map.win = mlx_new_window(map.mlx, map.width * 64, \
-	// map.height * 64, "so_long");
 	obj_init(&map);
 	setting_img(&map);
 	mlx_hook(map.win, X_EVENT_KEY_RELEASE, 0, &press_key, &map);

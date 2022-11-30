@@ -6,7 +6,7 @@
 #    By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 20:41:57 by yeselee           #+#    #+#              #
-#    Updated: 2022/11/28 20:25:19 by yeselee          ###   ########.fr        #
+#    Updated: 2022/11/30 09:02:45 by yeselee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJ_M		=	$(MPATH:.c=.o)
 
 BPATH_SRCS	=	close_bonus.c main_bonus.c map_check_bonus.c mlx_utils_bonus.c move_a_bonus.c \
 move_w_bonus.c move_s_bonus.c move_d_bonus.c obj_init_bonus.c utils_bonus.c enemy_move_bonus.c \
-enemy_move2_bonus.c put_image_rd_bonus.c
+enemy_move2_bonus.c put_image_rd_bonus.c map_validate_bonus.c
 
 BPATH_DIR	=	bonus/
 BPATH		=	$(addprefix $(BPATH_DIR), $(BPATH_SRCS))
@@ -42,21 +42,29 @@ OBJ_B		=	$(BPATH:.c=.o)
 FUNC 		=	gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJ_F		=	$(FUNC:.c=.o)
 
+ifdef WITH_BONUS
+	OBJ_R = $(OBJ_B)
+else
+	OBJ_R = $(OBJ_M)
+endif
+
 #COMMANDS
 %.o:			%.c $(HEADER) Makefile
 				@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):		$(OBJ_F) $(OBJ_M)
+$(NAME):		$(OBJ_F) $(OBJ_R)
 				@make -s -C $(LFT_DIR) all
-				@$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_M) $(MLX) -o $(NAME)
+				@$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_R) $(MLX) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 all:			$(NAME)
 
-bonus:			fclean $(OBJ_F) $(OBJ_B)
-				@make -s -C $(LFT_DIR) all
-				@$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_B) $(MLX) -o $(NAME)
-				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
+bonus:			
+	make WITH_BONUS=1
+# fclean $(OBJ_F) $(OBJ_B)
+# @make -s -C $(LFT_DIR) all
+# @$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_B) $(MLX) -o $(NAME)
+# @echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 clean:
 				@make -s -C $(LFT_DIR) clean
