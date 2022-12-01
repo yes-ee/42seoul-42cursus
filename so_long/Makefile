@@ -6,7 +6,7 @@
 #    By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 20:41:57 by yeselee           #+#    #+#              #
-#    Updated: 2022/11/30 09:02:45 by yeselee          ###   ########.fr        #
+#    Updated: 2022/12/01 17:26:43 by yeselee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,12 +59,8 @@ $(NAME):		$(OBJ_F) $(OBJ_R)
 
 all:			$(NAME)
 
-bonus:			
+bonus:
 	make WITH_BONUS=1
-# fclean $(OBJ_F) $(OBJ_B)
-# @make -s -C $(LFT_DIR) all
-# @$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_B) $(MLX) -o $(NAME)
-# @echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 clean:
 				@make -s -C $(LFT_DIR) clean

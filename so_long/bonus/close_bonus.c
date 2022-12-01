@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 00:57:58 by yeselee           #+#    #+#             */
-/*   Updated: 2022/11/25 00:58:00 by yeselee          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:50:06 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	exit_game(t_map *game)
 
 void	print_error(char *msg)
 {
-	printf("Error\n%s", msg);
+	write(1, "Error\n", 6);
+	write(1, msg, ft_strlen(msg));
 	exit(1);
 }
