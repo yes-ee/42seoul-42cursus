@@ -6,7 +6,7 @@
 #    By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/09 17:43:39 by yeselee           #+#    #+#              #
-#    Updated: 2023/01/09 18:03:25 by yeselee          ###   ########.fr        #
+#    Updated: 2023/01/16 21:13:34 by yeselee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HEADER_DIR	=	./includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # FILES
-MPATH_SRCS	=	philo.c
+MPATH_SRCS	=	philo.c ft_atoi.c print_error.c
 MPATH_DIR	=	./srcs/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
