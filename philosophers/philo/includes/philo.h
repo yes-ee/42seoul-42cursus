@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:55:55 by yeselee           #+#    #+#             */
-/*   Updated: 2023/01/16 22:17:11 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/01/17 22:23:24 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,24 @@
 
 # include <pthread.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 typedef struct s_info
 {
-	int	nphilo;
-	int	tdie;
-	int	teat;
-	int	tsleep;
-	int	neat;
+	int				nphilo;
+	int				tdie;
+	int				teat;
+	int				tsleep;
+	int				neat;
+	pthread_mutex_t	*fork;
 }	t_info;
 
 typedef struct s_philo
 {
-	int	num;
 	int	id;
 	int	left;
 	int	right;
+	int	last_eat;
 	int	eat_count;
 }	t_philo;
 
@@ -41,5 +43,11 @@ int	ft_atoi(const char *str);
 
 /* print_error.c*/
 int	print_error(char *msg);
+
+/* init.c */
+int	init(t_info *info, t_philo **philo);
+int	init_mutex(t_info *info);
+int	destroy_mutex_all(t_info *info, int n);
+int	init_philo(t_info info, t_philo **philo);
 
 #endif
