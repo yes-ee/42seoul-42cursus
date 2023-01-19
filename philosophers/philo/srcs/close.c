@@ -17,3 +17,10 @@ int	print_error(char *msg)
 	printf("Error : %s\n", msg);
 	return (1);
 }
+
+int	free_all(t_info *info, t_philo **philo)
+{
+	free(info);
+	free(philo);
+	return (1);
+}

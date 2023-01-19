@@ -30,6 +30,8 @@ int	arg_check(t_info *info, int argc, char **argv)
 		return (1);
 	if (info->tdie < 0 || info->teat <= 0 || info->tsleep <= 0)
 		return (1);
+	info->philo_left = info->nphilo;
+	info->end = 0;
 	return (0);
 }
 
@@ -42,6 +44,8 @@ int	main(int argc, char **argv)
 		return (print_error("argument error"));
 	if (init(&info, &philo))
 		return (1);
-	
+	if (start_philo(&info, &philo))
+		return (print_error("start philo error"));
+
 	return (0);
 }

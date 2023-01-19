@@ -22,9 +22,10 @@ int	init_philo(t_info info, t_philo **philo)
 		return (1);
 	while (i < info.nphilo)
 	{
-		(*philo)[i].id = i;
+		(*philo)[i].num = i;
 		(*philo)[i].left = i;
 		(*philo)[i].right = (i + 1) % info.nphilo;
+		(*philo)[i].info = &info;
 		i++;
 	}
 	return (0);
@@ -43,7 +44,7 @@ int	destroy_mutex_all(t_info *info, int n)
 	return (0);
 }
 
-int	init_mutex(t_info *info)
+int	init_mutex(t_info *info, t_philo **philo)
 {
 	int	i;
 
@@ -56,6 +57,7 @@ int	init_mutex(t_info *info)
 		if (pthread_mutex_init(&(info->fork[i]), NULL) != 0)
 		{
 			destroy_mutex_all(info, i);
+			free(philo);
 			free(info->fork);
 			return (1);
 		}
@@ -66,9 +68,9 @@ int	init_mutex(t_info *info)
 
 int	init(t_info *info, t_philo **philo)
 {
-	if (init_mutex(info))
-		return (print_error("init mutex error"));
 	if (init_philo(*info, philo))
 		return (print_error("init philo error"));
+	if (init_mutex(info, philo))
+		return (print_error("init mutex error"));
 	return (0);
 }

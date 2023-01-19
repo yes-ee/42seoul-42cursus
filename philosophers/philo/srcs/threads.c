@@ -12,24 +12,51 @@
 
 #include "../includes/philo.h"
 
-void	*ft_thread(void *arg)
+void	*routine(void *arg)
 {
-	t_philo	*philo;
+	t_info	*info;
+	t_philo *philoi;
 
-	philo = arg;
-	if (philo->id % 2 == 0)
-		//짝수면 
+	philoi = arg;
+	info = philoi->info;
+	while (1)
+	{
+		philo_eat(info, philoi);
+		if (philoi->eat_count == info->neat)
+		{
+			pthread_mutex_lock(&(info->m_end));
+			info->end++;
+			pthread_mutex_unlock(&(info->m_end));
+			break;
+		}
+		philo_sleep(info, philoi);
+		philo_think(info, philoi);
+	}
+	return ;
 }
 
-int	start_philo(t_info info, t_philo *philo)
+int	create_thread(t_info *info, t_philo **philo, int i)
+{
+	while (i < info->nphilo)
+	{
+		if (!pthread_create(&(philo[i]->thread), NULL, routine, &((*philo)[i])))
+			return (1);
+		i += 2;
+	}
+	if (i % 2 == 0)
+		usleep(info->teat * 1000);
+	return (0);
+}
+
+int	start_philo(t_info *info, t_philo **philo)
 {
 	int	i;
 
 	i = 0;
-	while (i < info.nphilo)
-	{
-		if (!pthread_create(&(philo[i].thread), NULL, ft_thread, &(philo[i])))
-			return (1);
-		i++;
-	}
+	info->start_time = get_time_ms();
+	if (info->start_time == 0)
+		return (free_all(info, philo));
+	if (create_thread(info, philo, 0) || create_thread(info, philo, 1))
+		return (free_all(info, philo));
+	
 }
