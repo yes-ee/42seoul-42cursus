@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:55:55 by yeselee           #+#    #+#             */
-/*   Updated: 2023/01/17 22:23:24 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/01/19 15:39:49 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ typedef struct s_info
 
 typedef struct s_philo
 {
-	int	id;
-	int	left;
-	int	right;
-	int	last_eat;
-	int	eat_count;
+	int			id;
+	int			left;
+	int			right;
+	int			last_eat;
+	int			eat_count;
+	pthread_t	thread;
 }	t_philo;
 
 /* main.c */
