@@ -31,8 +31,10 @@ typedef struct s_info
 	int				neat;
 	long long		start_time;
 	int				end;
-	pthread_mutex_t	*fork;
+	int				eat_finish;
+	pthread_mutex_t *fork;
 	pthread_mutex_t	m_print;
+	pthread_mutex_t	m_eat;
 	pthread_mutex_t	m_end;
 }	t_info;
 
@@ -53,8 +55,7 @@ int					arg_check(t_info *info, int argc, char **argv);
 
 /* init.c */
 int					init(t_info *info, t_philo **philo);
-int					destroy_mutex_all(t_info *info, int n);
-int					init_mutex(t_info *info, t_philo **philo);
+int					init_mutex(t_info *info);
 int					init_philo(t_info *info, t_philo **philo);
 
 /* utils.c */
@@ -72,6 +73,10 @@ void				check_end(t_info *info, t_philo **philo);
 void				philo_eat(t_info *info, t_philo *philoi);
 void				philo_think(t_info *info, t_philo *philoi);
 void				philo_sleep(t_info *info, t_philo *philoi);
-void				print_log(t_philo *philoi, long long t, char *msg, int die);
+void				print_log(int id, t_info *info, char *msg, int die);
+
+/* close.c */
+int					destroy_mutex_all(t_info *info, int n);
+int					close_game(t_info *info, t_philo **philo);
 
 #endif

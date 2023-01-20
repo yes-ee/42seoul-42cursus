@@ -20,6 +20,7 @@ int	arg_check(t_info *info, int argc, char **argv)
 	info->tdie = ft_atoi(argv[2]);
 	info->teat = ft_atoi(argv[3]);
 	info->tsleep = ft_atoi(argv[4]);
+	info->end = 0;
 	if (argc == 6)
 	{
 		info->neat = ft_atoi(argv[5]);
@@ -30,16 +31,15 @@ int	arg_check(t_info *info, int argc, char **argv)
 		info->neat = -1;
 	if (info->nphilo > 8191 || info -> nphilo <= 0)
 		return (1);
-	if (info->tdie < 0 || info->teat <= 0 || info->tsleep <= 0)
+	if (info->tdie <= 0 || info->teat <= 0 || info->tsleep <= 0)
 		return (1);
-	info->end = info->nphilo;
 	return (0);
 }
 
-void fun(void)
-{
-	system("leaks philo");
-}
+// void fun(void)
+// {
+// 	system("leaks philo");
+// }
 
 int	main(int argc, char **argv)
 {
@@ -48,13 +48,13 @@ int	main(int argc, char **argv)
 
 	if (arg_check(&info, argc, argv))
 		return (print_error("argument error"));
-	printf("arg success\n");
+	// printf("arg success\n");
 	if (init(&info, &philo))
 		return (1);
 	// printf("%d %d %d %d %d\n", info.nphilo, info.tdie, info.teat, info.tsleep, info.neat);
 	if (start_philo(&info, &philo))
 		return (print_error("start philo error"));
-	free_all(&info, &philo);
-	atexit(fun);
+	close_game(&info, &philo);
+	// atexit(fun);
 	return (0);
 }

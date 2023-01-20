@@ -22,7 +22,7 @@ HEADER_DIR	=	./includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # FILES
-MPATH_SRCS	=	main.c init.c utils.c thread.c philo_actions.c
+MPATH_SRCS	=	main.c init.c utils.c thread.c philo_actions.c close.c
 MPATH_DIR	=	./srcs/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)

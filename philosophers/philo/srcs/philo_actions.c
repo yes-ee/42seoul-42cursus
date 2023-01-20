@@ -12,26 +12,29 @@
 
 #include "../includes/philo.h"
 
-void	print_log(t_philo *philoi, long long t, char *msg, int die)
+void	print_log(int id, t_info *info, char *msg, int die)
 {
-	pthread_mutex_lock(&(philoi->info->m_print));
-	if (philoi->info->end != 0)
-		printf("%llu %d %s\n", t, philoi->num + 1, msg);
+	long long	n;
+
+	pthread_mutex_lock(&(info->m_print));
+	n = get_time_ms();
+	if (!info->end)
+		printf("%llu %d %s\n", n - info->start_time, id + 1, msg);
 	else if (die)
-		printf("%llu %d %s\n", t, philoi->num + 1, msg);
-	pthread_mutex_unlock(&(philoi->info->m_print));
+		printf("%llu %d %s\n", n - info->start_time, id + 1, msg);
+	pthread_mutex_unlock(&(info->m_print));
 	return ;
 }
 
 void	philo_sleep(t_info *info, t_philo *philoi)
 {
-	long long	now;
+	// long long	now;
 	long long	tsleep;
 
-	philoi->last_sleep = get_time_ms();
-	now = philoi->last_sleep - info->start_time;
-	print_log(philoi, now, "is sleeping", 0);
+	// now = philoi->last_sleep - info->start_time;
 	tsleep = (long long)info->tsleep;
+	print_log(philoi->num, info, "is sleeping", 0);
+	philoi->last_sleep = get_time_ms();
 	while (get_time_ms() - philoi->last_sleep < tsleep)
 		usleep(100);
 	return ;
@@ -39,10 +42,10 @@ void	philo_sleep(t_info *info, t_philo *philoi)
 
 void	philo_think(t_info *info, t_philo *philoi)
 {
-	long long	now;
+	// long long	now;
 
-	now = get_time_ms() - info->start_time;
-	print_log(philoi, now, "is thinking", 0);
+	// now = get_time_ms() - info->start_time;
+	print_log(philoi->num, info, "is thinking", 0);
 	return ;
 }
 
@@ -51,19 +54,20 @@ void	philo_eat(t_info *info, t_philo *philoi)
 	long long	time;
 
 	pthread_mutex_lock(&(info->fork[philoi->left]));
-	print_log(philoi, get_time_ms() - info->start_time, "has taken a fork", 0);
+	print_log(philoi->num, info, "has taken a fork", 0);
 	if (info->nphilo != 1)
 	{
 		pthread_mutex_lock(&(info->fork[philoi->right]));
-		printf("thread %d\n", philoi->num + 1);
+		// printf("thread %d\n", philoi->num + 1);
 		philoi->last_eat = get_time_ms();
-		time = philoi->last_eat - info->start_time;
-		print_log(philoi, time, "has taken a fork", 0);
-		print_log(philoi, time, "is eating", 0);
+		// time = philoi->last_eat - info->start_time;
+		print_log(philoi->num, info, "has taken a fork", 0);
+		print_log(philoi->num, info, "is eating", 0);
 		time = (long long)info->teat;
 		while (get_time_ms() - philoi->last_eat < time)
-			usleep(100);
-		philoi->eat_count++;
+			usleep(50);
+		(philoi->eat_count)++;
+		// printf("thread %d eat count %d\n", philoi->num + 1, philoi->eat_count);
 		pthread_mutex_unlock(&(info->fork[philoi->right]));
 	}
 	else
