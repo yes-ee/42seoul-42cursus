@@ -16,7 +16,6 @@ void	check_end(t_info *info, t_philo **philo)
 {
 	int			i;
 	long long	tdie;
-	// long long	now;
 
 	tdie = (long long)info->tdie;
 	while (!info->end)
@@ -31,16 +30,11 @@ void	check_end(t_info *info, t_philo **philo)
 		i = 0;
 		while (i < info->nphilo)
 		{
-			// usleep(100);
-				// printf("if tdie %d %llu %llu %llu %llu\n", i, tdie, get_time_ms()-(*philo)[i].last_eat, get_time_ms(), (*philo)[1].last_eat);
 			if (get_time_ms() - (*philo)[i].last_eat > tdie)
 			{
-				// printf("ok\n\n\n\n");
-				pthread_mutex_lock(&(info->m_end));
-				// now = get_time_ms() - info->start_time;
-				info->end = 1;
 				print_log(i, info, "died", 1);
-				pthread_mutex_unlock(&(info->m_end));
+				info->end = 1;
+				pthread_mutex_unlock(&(info->m_print));
 				break;
 			}
 			i++;
@@ -55,15 +49,9 @@ void	*routine(void *arg)
 
 	philoi = arg;
 	info = philoi->info;
-	// printf("thread info : %d %d %d %d\n", info->nphilo, info->tdie, info->teat, info->tsleep);
-	// printf("philoi : num %d left %d right %d\n", philoi->num, philoi->left, philoi->right);
 	while (!(info->end))
 	{
-		// printf("routine end %d\n", info->end);
-		// printf("routine thread %d create end %d \n", philoi->num, info->end);
 		philo_eat(info, philoi);
-		// printf("thread %d philo eat end\n", philoi->num);
-		// break;
 		if (philoi->eat_count == info->neat)
 		{
 			pthread_mutex_lock(&(info->m_eat));
@@ -72,7 +60,6 @@ void	*routine(void *arg)
 			break ;
 		}
 		philo_sleep(info, philoi);
-		// printf("thread %d sleep end\n", philoi->num + 1);
 		print_log(philoi->num, info, "is thinking", 0);
 	}
 	return (0);
@@ -101,7 +88,6 @@ int	start_philo(t_info *info, t_philo **philo)
 		return (close_game(info, philo));
 	while (++i < info->nphilo)
 		(*philo)[i].last_eat = info->start_time;
-	// printf("%llu\n", info->start_time);
 	if (create_thread(info, *philo, 0) || create_thread(info, *philo, 1))
 		return (close_game(info, philo));
 	check_end(info, philo);

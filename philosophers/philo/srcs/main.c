@@ -36,11 +36,6 @@ int	arg_check(t_info *info, int argc, char **argv)
 	return (0);
 }
 
-// void fun(void)
-// {
-// 	system("leaks philo");
-// }
-
 int	main(int argc, char **argv)
 {
 	t_info			info;
@@ -48,13 +43,10 @@ int	main(int argc, char **argv)
 
 	if (arg_check(&info, argc, argv))
 		return (print_error("argument error"));
-	// printf("arg success\n");
 	if (init(&info, &philo))
 		return (1);
-	// printf("%d %d %d %d %d\n", info.nphilo, info.tdie, info.teat, info.tsleep, info.neat);
 	if (start_philo(&info, &philo))
 		return (print_error("start philo error"));
 	close_game(&info, &philo);
-	// atexit(fun);
 	return (0);
 }
