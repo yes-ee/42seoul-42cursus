@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:55:55 by yeselee           #+#    #+#             */
-/*   Updated: 2023/01/20 21:05:23 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/01/22 03:18:48 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <stdint.h>
 # include <unistd.h>
 
-# define U
-
 typedef struct s_info
 {
 	int				nphilo;
@@ -32,7 +30,7 @@ typedef struct s_info
 	long long		start_time;
 	int				end;
 	int				eat_finish;
-	pthread_mutex_t *fork;
+	pthread_mutex_t	*fork;
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	m_eat;
 	pthread_mutex_t	m_end;
@@ -47,6 +45,7 @@ typedef struct s_philo
 	long long		last_sleep;
 	int				eat_count;
 	t_info			*info;
+	pthread_mutex_t	p_time;
 	pthread_t		thread;
 }	t_philo;
 
@@ -61,22 +60,26 @@ int					init_philo(t_info *info, t_philo **philo);
 /* utils.c */
 int					ft_atoi(const char *str);
 long long			get_time_ms(void);
-int					print_error(char *msg);
-int					free_all(t_info *info, t_philo **philo);
 
 /* thread.c */
 int					start_philo(t_info *info, t_philo **philo);
-int					create_thread(t_info *info, t_philo *philo, int i);
-void				check_end(t_info *info, t_philo **philo);
+int					create_thread(t_info *info, t_philo **philo, int i);
+
+/* monitor.c */
+void				monitor(t_info *info, t_philo **philo);
+int					check_dead(t_info *info, t_philo **philo);
+int					check_end(t_info *info);
+int					eat_cnt(t_info *info);
 
 /* philo_actions.c */
 void				philo_eat(t_info *info, t_philo *philoi);
-void				philo_think(t_info *info, t_philo *philoi);
 void				philo_sleep(t_info *info, t_philo *philoi);
 void				print_log(int id, t_info *info, char *msg, int die);
 
 /* close.c */
-int					destroy_mutex_all(t_info *info, int n);
+int					destroy_mutex_all(t_info *info, t_philo **philo, int n);
 int					close_game(t_info *info, t_philo **philo);
+int					print_error(char *msg);
+int					free_all(t_info *info, t_philo **philo);
 
 #endif

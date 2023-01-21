@@ -6,14 +6,14 @@
 #    By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/09 17:43:39 by yeselee           #+#    #+#              #
-#    Updated: 2023/01/20 20:14:36 by yeselee          ###   ########.fr        #
+#    Updated: 2023/01/22 03:37:52 by yeselee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # SETUP
 NAME		=	philo
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra 
+CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 
 # HEADER
@@ -22,7 +22,7 @@ HEADER_DIR	=	./includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # FILES
-MPATH_SRCS	=	main.c init.c utils.c thread.c philo_actions.c close.c
+MPATH_SRCS	=	main.c init.c utils.c thread.c philo_actions.c close.c monitor.c
 MPATH_DIR	=	./srcs/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
@@ -34,7 +34,7 @@ OBJ_R = $(OBJ_M)
 				@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):		$(OBJ_R)
-				@$(CC) $(OBJ_R) -o $(NAME)
+				@$(CC) $(OBJ_R) -o $(NAME) -lpthread
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 all:			$(NAME)

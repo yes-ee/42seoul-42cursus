@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:34:58 by yeselee           #+#    #+#             */
-/*   Updated: 2023/01/20 19:49:16 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/01/22 03:52:47 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	arg_check(t_info *info, int argc, char **argv)
 	info->tdie = ft_atoi(argv[2]);
 	info->teat = ft_atoi(argv[3]);
 	info->tsleep = ft_atoi(argv[4]);
-	info->end = 0;
 	if (argc == 6)
 	{
 		info->neat = ft_atoi(argv[5]);
@@ -29,6 +28,8 @@ int	arg_check(t_info *info, int argc, char **argv)
 	}
 	else
 		info->neat = -1;
+	info->end = 0;
+	info->eat_finish = 0;
 	if (info->nphilo > 8191 || info -> nphilo <= 0)
 		return (1);
 	if (info->tdie <= 0 || info->teat <= 0 || info->tsleep <= 0)

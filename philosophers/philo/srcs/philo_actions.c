@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:19:45 by yeselee           #+#    #+#             */
-/*   Updated: 2023/01/20 21:28:52 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/01/22 03:00:54 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	print_log(int id, t_info *info, char *msg, int die)
 
 	pthread_mutex_lock(&(info->m_print));
 	n = get_time_ms();
-	if (!info->end)
+	if (!check_end(info))
 		printf("%llu %d %s\n", n - info->start_time, id + 1, msg);
-	if (die)
-		return ;
+	else if (die)
+		printf("%llu %d %s\n", n - info->start_time, id + 1, msg);
 	pthread_mutex_unlock(&(info->m_print));
 	return ;
 }
@@ -30,6 +30,8 @@ void	philo_sleep(t_info *info, t_philo *philoi)
 {
 	long long	tsleep;
 
+	if (check_end(info))
+		return ;
 	tsleep = (long long)info->tsleep;
 	print_log(philoi->num, info, "is sleeping", 0);
 	philoi->last_sleep = get_time_ms();
@@ -47,7 +49,9 @@ void	philo_eat(t_info *info, t_philo *philoi)
 	if (info->nphilo != 1)
 	{
 		pthread_mutex_lock(&(info->fork[philoi->right]));
+		pthread_mutex_lock(&(philoi->p_time));
 		philoi->last_eat = get_time_ms();
+		pthread_mutex_unlock(&(philoi->p_time));
 		print_log(philoi->num, info, "has taken a fork", 0);
 		print_log(philoi->num, info, "is eating", 0);
 		(philoi->eat_count)++;

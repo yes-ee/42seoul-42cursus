@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:43:50 by yeselee           #+#    #+#             */
-/*   Updated: 2023/01/20 21:04:32 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/01/22 03:08:30 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,4 @@ long long	get_time_ms(void)
 	if (gettimeofday(&tv, NULL) < 0)
 		return (0);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
-
-int	print_error(char *msg)
-{
-	printf("Error : %s\n", msg);
-	return (1);
-}
-
-int	free_all(t_info *info, t_philo **philo)
-{
-	free(info->fork);
-	free(*philo);
-	return (1);
 }
