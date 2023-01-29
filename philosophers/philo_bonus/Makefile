@@ -13,7 +13,7 @@
 # SETUP
 NAME		=	philo_bonus
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Wextra
 RM			=	rm -rf
 
 # HEADER
@@ -22,7 +22,7 @@ HEADER_DIR	=	./includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # FILES
-BPATH_SRCS	=	philo_bonus.c
+BPATH_SRCS	=	main.c init.c close.c utils.c
 BPATH_DIR	=	./srcs/
 BPATH		=	$(addprefix $(BPATH_DIR), $(BPATH_SRCS))
 OBJ_B		=	$(BPATH:.c=.o)
