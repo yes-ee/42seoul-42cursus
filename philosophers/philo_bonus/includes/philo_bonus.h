@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:55:55 by yeselee           #+#    #+#             */
-/*   Updated: 2023/01/09 18:04:52 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/02/12 02:40:50 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <semaphore.h>
 # include <fcntl.h>
 # include <sys/stat.h>
+# include <signal.h>
 
 typedef struct s_info
 {
@@ -30,9 +31,13 @@ typedef struct s_info
 	int				tsleep;
 	int				neat;
 	long long		start_time;
-	int				end;
-	int				eat_finish;
-	sem_t				*fork;
+	pid_t			*pid;
+	// int				end;
+	// int				eat_finish;
+	sem_t			*fork;
+	sem_t			*eat_finish;
+	sem_t			*end;
+	sem_t			**p_time;
 	// pthread_mutex_t	*fork;
 	// pthread_mutex_t	m_print;
 	// pthread_mutex_t	m_eat;
@@ -48,16 +53,18 @@ typedef struct s_philo
 	long long		last_sleep;
 	int				eat_count;
 	t_info			*info;
+	// sem_t			*time;
 	// pthread_mutex_t	p_time;
-	// pthread_t		thread;
+	pthread_t		thread;
 }	t_philo;
 
 /* main.c */
 int					arg_check(t_info *info, int argc, char **argv);
 
 /* init.c */
-int					init(t_info *info, t_philo **philo);
-// int					init_mutex(t_info *info);
+int					init(t_info *info);
+int					init_semaphore(t_info *info);
+int					init_pid(t_info *info);
 // int					init_philo(t_info *info, t_philo **philo);
 
 /* utils.c */
@@ -69,7 +76,7 @@ long long			get_time_ms(void);
 // int					create_thread(t_info *info, t_philo **philo, int i);
 
 // /* monitor.c */
-// void				monitor(t_info *info, t_philo **philo);
+void				monitor(t_info *info, t_philo *philo);
 // int					check_dead(t_info *info, t_philo **philo);
 // int					check_end(t_info *info);
 // int					eat_cnt(t_info *info);
@@ -81,7 +88,8 @@ long long			get_time_ms(void);
 
 /* close.c */
 // int					destroy_mutex_all(t_info *info, t_philo **philo, int n);
-// int					close_game(t_info *info, t_philo **philo);
+int					close_game(t_info *info);
+int					unlink_semaphore(void);
 int					print_error(char *msg);
 // int					free_all(t_info *info, t_philo **philo);
 
