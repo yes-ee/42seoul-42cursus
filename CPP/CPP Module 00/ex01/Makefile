@@ -1,11 +1,11 @@
 # SETUP
-NAME		=	megaphone
+NAME		=	phonebook
 CC			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
 # FILES
-SRCS	=	megaphone.cpp
+SRCS	=	Contact.cpp PhoneBook.cpp main.cpp
 OBJ_M		=	$(SRCS:.cpp=.o)
 
 #COMMANDS

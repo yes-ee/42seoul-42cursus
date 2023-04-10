@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/10 21:46:30 by yeselee           #+#    #+#             */
+/*   Updated: 2023/04/11 00:31:10 by yeselee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook() {
@@ -6,6 +18,9 @@ PhoneBook::PhoneBook() {
 
 void PhoneBook::add() {
 	std::string a, b, c, d, e;
+	std::string tmp;
+
+	std::getline(std::cin, tmp);
 
 	if (this->index == 8) {
 		for (int i = 1; i < 8; i++)
@@ -13,7 +28,10 @@ void PhoneBook::add() {
 		index--;
 	}
 
+	std::cout << "(" << this->index + 1 <<") first name, last name, nickname, phone number, darkest secret" << std::endl;
 	std::cin >> a >> b >> c >> d >> e;
+	if (std::cin.eof())
+		return ;
 	this->contacts[index].set_first_name(a);
 	this->contacts[index].set_last_name(b);
 	this->contacts[index].set_nickname(c);
@@ -39,6 +57,9 @@ std::string PhoneBook::set_format(std::string s) {
 
 void PhoneBook::search() {
 	int i;
+	std::string tmp;
+
+	std::getline(std::cin, tmp);
 
 	if (this->index == 0) {
 		std::cout << "No contact" << std::endl;
@@ -48,8 +69,15 @@ void PhoneBook::search() {
 	while (1) {
 		std::cout << "Choose index number(1 ~ 8) : ";
 		std::cin >> i;
+		if (std::cin.eof())
+			return;
 
-		if (i < 1 || i > 8 || this->index < i)
+		if (std::cin.fail()) {
+			std::cin.clear();
+			std::cin.ignore(2147483647, '\n');
+			std::cout << "Wrong index. Try again." << std::endl;
+		}
+		else if (i < 1 || i > 8 || this->index < i)
 			std::cout << "Wrong index. Try again." << std::endl;
 		else 
 			break;
