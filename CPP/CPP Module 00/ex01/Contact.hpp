@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 21:46:48 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/10 21:46:54 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/04/12 22:21:03 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ class Contact {
 		std::string get_first_name();
 		std::string get_last_name();
 		std::string get_nickname();
+		std::string get_phone_number();
+		std::string get_secret();
 };
 
 #endif

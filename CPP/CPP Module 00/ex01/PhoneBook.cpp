@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 21:46:30 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/11 00:31:10 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/04/12 23:29:17 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,14 @@ void PhoneBook::add() {
 
 	std::cout << "(" << this->index + 1 <<") first name, last name, nickname, phone number, darkest secret" << std::endl;
 	std::cin >> a >> b >> c >> d >> e;
+	std::getline(std::cin, tmp);
+
 	if (std::cin.eof())
-		return ;
+		return;
+	if (d.length() != 11) {
+		std::cout << "Wrong input" << std::endl;
+		return;
+	}
 	this->contacts[index].set_first_name(a);
 	this->contacts[index].set_last_name(b);
 	this->contacts[index].set_nickname(c);
@@ -48,15 +54,12 @@ std::string PhoneBook::set_format(std::string s) {
 		s[9] = '.';
 		s.erase(10);
 	}
-	else if (len < 10) {
-		s.insert(0, 10 - len, ' ');
-	}
-
 	return s;
 }
 
 void PhoneBook::search() {
 	int i;
+	std::string l;
 	std::string tmp;
 
 	std::getline(std::cin, tmp);
@@ -66,21 +69,39 @@ void PhoneBook::search() {
 		return;
 	}
 
+	std::cout << std::setw(10) << "index" << "|" << std::setw(10) << "firstname" << "|" << std::setw(10) << "lastname" << "|" <<std::setw(10) << "nickname" << std::endl;
+
+
+	for (int i = 0; i < index; i++) {
+		std::string first_name = this->contacts[i].get_first_name();
+		std::string last_name = this->contacts[i].get_last_name();
+		std::string nickname = this->contacts[i].get_nickname();
+
+		std::cout << std::setw(10) << i + 1 << "|" << std::setw(10) << set_format(first_name) << "|" << std::setw(10) << set_format(last_name) << "|" <<std::setw(10) << set_format(nickname) << std::endl;
+	}
+
 	while (1) {
 		std::cout << "Choose index number(1 ~ 8) : ";
-		std::cin >> i;
+		std::cin >> l;
+
 		if (std::cin.eof())
 			return;
 
-		if (std::cin.fail()) {
-			std::cin.clear();
-			std::cin.ignore(2147483647, '\n');
+		if (l.length() != 1)
 			std::cout << "Wrong index. Try again." << std::endl;
+		else {
+			try {
+				i = stoi(l);
+				if (i < 1 || i > 8 || index < i)
+					std::cout << "Wrong index. Try again." << std::endl;
+				else
+					break;
+			}
+			catch (...) {
+				std::cout << "Wrong index. Try again." << std::endl;
+			}
 		}
-		else if (i < 1 || i > 8 || this->index < i)
-			std::cout << "Wrong index. Try again." << std::endl;
-		else 
-			break;
+		std::getline(std::cin, tmp);
 	}
 
 	i--;
@@ -88,10 +109,12 @@ void PhoneBook::search() {
 	std::string first_name = this->contacts[i].get_first_name();
 	std::string last_name = this->contacts[i].get_last_name();
 	std::string nickname = this->contacts[i].get_nickname();
+	std::string phone_number = this->contacts[i].get_phone_number();
+	std::string secret = this->contacts[i].get_secret();
 
-	first_name = set_format(first_name);
-	last_name = set_format(last_name);
-	nickname = set_format(nickname);
-
-	std::cout << "         " << i + 1<< "|" << first_name << "|" << last_name << "|" << nickname << std::endl;
+	std::cout << "first name : " << first_name << std::endl;
+	std::cout << "last name : " << last_name << std::endl;
+	std::cout << "nickname : " << nickname << std::endl;
+	std::cout << "phone number : " << phone_number << std::endl;
+	std::cout << "darkest secret : " << secret << std::endl;
 }

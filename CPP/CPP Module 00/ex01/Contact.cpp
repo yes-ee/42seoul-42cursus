@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 21:47:11 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/10 21:47:34 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/04/12 22:21:39 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ std::string Contact::get_last_name() {
 }
 std::string Contact::get_nickname() {
 	return this->nickname;
+}
+std::string Contact::get_phone_number() {
+	return this->phone_number;
+}
+std::string Contact::get_secret() {
+	return this->secret;
 }
