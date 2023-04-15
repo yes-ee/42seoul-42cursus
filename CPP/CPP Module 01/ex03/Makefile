@@ -1,11 +1,11 @@
 # SETUP
-NAME		=	zombieHorde
+NAME		=	weapon
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
 # FILES
-SRCS	=	Zombie.cpp main.cpp zombieHorde.cpp
+SRCS	=	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJ_M		=	$(SRCS:.cpp=.o)
 
 #COMMANDS

@@ -1,7 +1,7 @@
 # SETUP
 NAME		=	zombie
-CC			=	c++
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXX			=	c++
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
 # FILES
@@ -10,10 +10,10 @@ OBJ_M		=	$(SRCS:.cpp=.o)
 
 #COMMANDS
 .o:				.cpp
-				$(CC) $(CPPFLAGS) -c $(SRCS)
+				$(CXX) $(CXXFLAGS) -c $(SRCS)
 
 $(NAME):		$(OBJ_M)
-				$(CC) $(OBJ_M) -o $(NAME)
+				$(CXX) $(OBJ_M) -o $(NAME)
 
 all:			$(NAME)
 

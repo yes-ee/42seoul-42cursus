@@ -1,11 +1,11 @@
 # SETUP
-NAME		=	zombieHorde
+NAME		=	hithisisbrain
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
 # FILES
-SRCS	=	Zombie.cpp main.cpp zombieHorde.cpp
+SRCS	=	main.cpp
 OBJ_M		=	$(SRCS:.cpp=.o)
 
 #COMMANDS
