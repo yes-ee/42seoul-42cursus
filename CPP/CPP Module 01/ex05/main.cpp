@@ -5,28 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 23:28:32 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/19 03:02:19 by yeselee          ###   ########.fr       */
+/*   Created: 2023/04/19 01:15:35 by yeselee           #+#    #+#             */
+/*   Updated: 2023/04/19 03:14:30 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
+#include "Harl.hpp"
 
 int main() {
-	std::string str = "HI THIS IS BRAIN";
-	std::string *stringPTR = &str;
-	std::string &stringREF = str;
+	Harl harl;
 
-	std::cout << "Memory Address" << std::endl;
-	std::cout << &str << std::endl;
-	std::cout << &stringPTR << std::endl;
-	std::cout << &stringREF << std::endl;
-
-	std::cout << "Value" << std::endl;
-	std::cout << str << std::endl;
-	std::cout << *stringPTR << std::endl;
-	std::cout << stringREF << std::endl;
+	harl.complain("DEBUG");
+	harl.complain("INFO");
+	harl.complain("WARNING");
+	harl.complain("ERROR");
 
 	return 0;
 }

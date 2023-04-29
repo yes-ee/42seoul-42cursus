@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 23:28:32 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/19 03:02:19 by yeselee          ###   ########.fr       */
+/*   Created: 2023/04/19 02:00:20 by yeselee           #+#    #+#             */
+/*   Updated: 2023/04/19 02:29:28 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef HARL_HPP
+# define HARL_HPP
 
 #include <string>
 #include <iostream>
 
-int main() {
-	std::string str = "HI THIS IS BRAIN";
-	std::string *stringPTR = &str;
-	std::string &stringREF = str;
+class Harl {
+	private:
+		void debug();
+		void info();
+		void warning();
+		void error();
+	public:
+		void complain(std::string level);
+};
 
-	std::cout << "Memory Address" << std::endl;
-	std::cout << &str << std::endl;
-	std::cout << &stringPTR << std::endl;
-	std::cout << &stringREF << std::endl;
-
-	std::cout << "Value" << std::endl;
-	std::cout << str << std::endl;
-	std::cout << *stringPTR << std::endl;
-	std::cout << stringREF << std::endl;
-
-	return 0;
-}
+#endif

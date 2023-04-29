@@ -5,28 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 23:28:32 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/19 03:02:19 by yeselee          ###   ########.fr       */
+/*   Created: 2023/04/19 02:18:03 by yeselee           #+#    #+#             */
+/*   Updated: 2023/04/19 02:47:24 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
+#include "Harl.hpp"
 
-int main() {
-	std::string str = "HI THIS IS BRAIN";
-	std::string *stringPTR = &str;
-	std::string &stringREF = str;
+int main(int argc, char *argv[]) {
+	Harl harl;
 
-	std::cout << "Memory Address" << std::endl;
-	std::cout << &str << std::endl;
-	std::cout << &stringPTR << std::endl;
-	std::cout << &stringREF << std::endl;
+	if (argc != 2) {
+		std::cout << "Wrong argument" << std::endl;
+		return 1;
+	}
 
-	std::cout << "Value" << std::endl;
-	std::cout << str << std::endl;
-	std::cout << *stringPTR << std::endl;
-	std::cout << stringREF << std::endl;
+	harl.complain(argv[1]);
 
 	return 0;
+
 }

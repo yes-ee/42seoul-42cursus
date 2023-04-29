@@ -6,14 +6,14 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 01:54:34 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/16 04:04:31 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/04/19 00:40:39 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_H
-#define WEAPON_H
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
-#include <string>
+# include <string>
 
 class Weapon {
 	private:

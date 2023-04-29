@@ -6,12 +6,12 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 22:58:28 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/14 23:12:52 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/04/19 11:23:45 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_H
-# define ZOMBIE_H
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 # include <iostream>
 # include <string>
