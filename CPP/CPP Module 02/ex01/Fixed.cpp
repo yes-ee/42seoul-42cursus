@@ -6,7 +6,7 @@
 /*   By: yeselee <yeselee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 00:02:47 by yeselee           #+#    #+#             */
-/*   Updated: 2023/04/30 01:04:36 by yeselee          ###   ########.fr       */
+/*   Updated: 2023/05/02 06:10:13 by yeselee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ Fixed::Fixed(const int num) {
 }
 
 Fixed::Fixed(const float num) {
-	
+	std::cout << "Float constructor called" << std::endl;
+	this->value = roundf(num * (1 << this->fraction));
 }
 
 Fixed::~Fixed() {
@@ -32,13 +33,14 @@ Fixed::~Fixed() {
 
 Fixed::Fixed(const Fixed& fix) {
 	std::cout << "Copy constructor called" << std::endl;
-	this->value = fix.getRawBits();
+	std::cout << "Copy assignment operator called" << std::endl;
+	this->value = fix.value;
 }
 
 Fixed& Fixed::operator=(const Fixed& fix) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &fix)
-		this->value = fix.getRawBits();
+		this->value = fix.value;
 	return *this;
 }
 
@@ -49,4 +51,17 @@ int Fixed::getRawBits() const {
 
 void Fixed::setRawBits(int const raw) {
 	this->value = raw;
+}
+
+int Fixed::toInt() const {
+	return (this->value >> this->fraction);
+}
+
+float Fixed::toFloat() const {
+	return (float)this->value / (1 << this->fraction);
+}
+
+std::ostream& operator << (std::ostream& out, const Fixed& fix) {
+	out << fix.toFloat();
+	return out;
 }
