@@ -21,8 +21,9 @@ int main()
 
 	std::cout << std::endl;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++) {
 		delete meta[i];
-
-		return 0;
+		std::cout << std::endl;
+	}
+	return 0;
 }

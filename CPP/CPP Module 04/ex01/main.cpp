@@ -1,9 +1,16 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include <stdlib.h>
+
+void check()
+{
+	system("leaks animal");
+}
 
 int main()
 {
+	atexit(check);
 	Animal *meta[10];
 
 	for (int i = 0; i < 10; i++) {
@@ -21,8 +28,10 @@ int main()
 
 	std::cout << std::endl;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++) {
 		delete meta[i];
+		std::cout << std::endl;
+	}
 
-		return 0;
+	return 0;
 }
