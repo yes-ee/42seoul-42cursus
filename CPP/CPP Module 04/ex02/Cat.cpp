@@ -19,9 +19,11 @@ Cat::Cat(const Cat &ref) {
 
 Cat& Cat::operator=(const Cat &ref) {
 	std::cout << "Cat copy assignment constructor called" << std::endl;
-	if (this != &ref)
+	if (this != &ref) {
 		this->type = ref.type;
+		delete this->brain;
 		this->brain = new Brain(*(ref.brain));
+	}
 	return *this;
 }
 

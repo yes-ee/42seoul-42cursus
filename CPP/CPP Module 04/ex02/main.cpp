@@ -6,6 +6,8 @@ int main()
 {
 	Animal *meta[10];
 
+	// Animal a = new Animal();
+
 	for (int i = 0; i < 10; i++) {
 		if (i % 2 == 0)
 			meta[i] = new Dog();
