@@ -6,10 +6,8 @@
 # include <string>
 # include "AMateria.hpp"
 # include "IMateriaSource.hpp"
-# include "Ice.hpp"
-# include "Cure.hpp"
 
-class MaterialSource {
+class MaterialSource : public IMaterialSource{
 	private:
 		AMateria *materias[4];
 	public:
@@ -18,8 +16,9 @@ class MaterialSource {
 		MaterialSource(const MaterialSource &ref);
 		MaterialSource &operator=(const MaterialSource &ref);
 
-		virtual void learnMateria(AMateria*);
-		virtual AMateria* createMateria(std::string const &type);
+		void learnMateria(AMateria*);
+		AMateria* createMateria(std::string const &type);
+		// AMateria* getMateria(int idx);
 };
 
 #endif

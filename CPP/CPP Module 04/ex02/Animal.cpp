@@ -24,7 +24,3 @@ Animal& Animal::operator=(const Animal &ref) {
 std::string Animal::getType() const {
 	return this->type;
 }
-
-void Animal::makeSound() const {
-	std::cout << "Animal says ?" << std::endl;
-}

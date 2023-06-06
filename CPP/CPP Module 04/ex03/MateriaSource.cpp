@@ -1,6 +1,8 @@
 #include "MateriaSource.hpp"
 
 MaterialSource::MaterialSource() {
+	for (int i = 0; i < 4; i++)
+		materias[i] = NULL;
 }
 
 MaterialSource::~MaterialSource() {
@@ -29,12 +31,10 @@ void MaterialSource::learnMateria(AMateria* copy) {
 }
 
 AMateria* MaterialSource::createMateria(std::string const &type) {
-	AMateria *new_materia;
-	if (type == "ice") {
-		new_materia = new Ice();
+	for (int i = 0; i < 4; i++) {
+		if (materias[i] && materias[i]->getType() == type) {
+			return this->materias[i]->clone();
+		}
 	}
-	else if (type == "cure") {
-		new_materia = new Cure();
-	}
-	return new_materia;
+	return 0;
 }

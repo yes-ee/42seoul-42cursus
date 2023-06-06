@@ -2,7 +2,7 @@
 # define ICE_HPP
 
 # include "AMateria.hpp"
-# include "Ice.hpp"
+# include "ICharacter.hpp"
 # include <iostream>
 
 class Ice : public AMateria {
