@@ -2,20 +2,17 @@
 #include "Cure.hpp"
 #include "Ice.hpp"
 #include "ICharacter.hpp"
+#include "Character.hpp"
 #include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
-#include <stdlib.h>
-
-void check()
-{
-	system("leaks a.out");
-}
 
 int main() {
-	atexit(check);
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Ice());
 
 	ICharacter* me = new Character("me");
 
@@ -23,6 +20,12 @@ int main() {
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
 	me->equip(tmp);
 
 	ICharacter* bob = new Character("bob");
@@ -35,4 +38,4 @@ int main() {
 	delete src;
 
 	return 0;
-	}
+}

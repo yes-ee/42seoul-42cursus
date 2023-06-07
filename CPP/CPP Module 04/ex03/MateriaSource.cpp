@@ -1,40 +1,48 @@
 #include "MateriaSource.hpp"
 
-MaterialSource::MaterialSource() {
+MateriaSource::MateriaSource() {
 	for (int i = 0; i < 4; i++)
 		materias[i] = NULL;
 }
 
-MaterialSource::~MaterialSource() {
+MateriaSource::~MateriaSource() {
+	for (int i = 0; i < 4; i++) {
+		if (materias[i])
+			delete materias[i];
+	}
 }
 
-MaterialSource::MaterialSource(const MaterialSource &ref) {
+MateriaSource::MateriaSource(const MateriaSource &ref) {
 	for (int i = 0; i < 4; i++)
-		this->materias[i] = ref.materias[i];
+		this->materias[i] = ref.materias[i]->clone();
 }
 
-MaterialSource& MaterialSource::operator=(const MaterialSource &ref) {
+MateriaSource& MateriaSource::operator=(const MateriaSource &ref) {
 	if (this != &ref) {
 		for (int i = 0; i < 4; i++)
-			this->materias[i] = ref.materias[i];
+			if (this->materias[i])
+				this->materias[i] = ref.materias[i]->clone();
 	}
 	return *this;
 }
 
-void MaterialSource::learnMateria(AMateria* copy) {
+void MateriaSource::learnMateria(AMateria* copy) {
 	for (int i = 0; i < 4; i++) {
 		if (materias[i] == NULL) {
 			materias[i] = copy;
-			break;
+			return;
 		}
 	}
+	std::cout << "cannot learn Materia" << std::endl;
+	delete copy;
 }
 
-AMateria* MaterialSource::createMateria(std::string const &type) {
+AMateria* MateriaSource::createMateria(std::string const &type) {
 	for (int i = 0; i < 4; i++) {
 		if (materias[i] && materias[i]->getType() == type) {
 			return this->materias[i]->clone();
 		}
 	}
+	std::cout << "materia " << type << " not exist" << std::endl;
 	return 0;
 }

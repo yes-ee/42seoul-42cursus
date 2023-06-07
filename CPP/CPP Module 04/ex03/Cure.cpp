@@ -9,7 +9,7 @@ Cure::Cure(const Cure &ref) {
 }
 
 Cure& Cure::operator=(const Cure &ref) {
-	if (this != ref)
+	if (this != &ref)
 		this->type = ref.type;
 	return *this;
 }
@@ -23,5 +23,5 @@ AMateria* Cure::clone() const {
 }
 
 void Cure::use(ICharacter& target) {
-	std::cout << "* heals " << target.getName << "'s wounds *" << endl;
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

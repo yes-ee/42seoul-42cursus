@@ -1,4 +1,5 @@
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 AMateria::AMateria() {
 }
@@ -8,7 +9,7 @@ AMateria::AMateria(std::string const &type) {
 }
 
 AMateria::AMateria(const AMateria &ref) {
-	this->type = ref.type();
+	this->type = ref.type;
 }
 
 AMateria& AMateria::operator=(const AMateria &ref) {
@@ -25,5 +26,5 @@ std::string const& AMateria::getType() const {
 }
 
 void AMateria::use(ICharacter& target) {
-	std::cout << "AMateria use called" << endl;
+	std::cout << "AMateria's use to " << target.getName() << std::endl;
 }
