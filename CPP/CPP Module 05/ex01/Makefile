@@ -5,7 +5,7 @@ CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
 # FILES
-SRCS	=	main.cpp Bureaucrat.cpp
+SRCS	=	main.cpp Bureaucrat.cpp Form.cpp
 OBJ_M		=	$(SRCS:.cpp=.o)
 
 #COMMANDS
