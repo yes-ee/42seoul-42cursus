@@ -18,7 +18,7 @@ int main() {
     }
 
     try {
-        Bureaucrat b("b", 0);
+        Bureaucrat b("b", 151);
         std::cout << b << std::endl;
     }
     catch(std::exception& e) {

@@ -1,17 +1,17 @@
 #include "Form.hpp"
 
-Form::Form() : name("empty"), sign_grade(150), execute_grade(150){
+Form::Form() : name("empty"), signGrade(150), executeGrade(150){
     this->status = false;
 }
 
-Form::Form(std::string name, int sign, int execute) : name(name), sign_grade(sign), execute_grade(execute){
-	if (sign_grade < 1)
+Form::Form(std::string name, int sign, int execute) : name(name), signGrade(sign), executeGrade(execute){
+	if (signGrade < 1)
 		throw Form::GradeTooHighException();
-	else if (sign_grade > 150)
+	else if (signGrade > 150)
 		throw Form::GradeTooLowException();
-	if (execute_grade < 1)
+	if (executeGrade < 1)
 		throw Form::GradeTooHighException();
-	else if (execute_grade > 150)
+	else if (executeGrade > 150)
 		throw Form::GradeTooLowException();
     this->status = false;
 }
@@ -19,7 +19,7 @@ Form::Form(std::string name, int sign, int execute) : name(name), sign_grade(sig
 Form::~Form() {
 }
 
-Form::Form(const Form& ref) : name(ref.name), sign_grade(ref.sign_grade), execute_grade(ref.execute_grade) {
+Form::Form(const Form& ref) : name(ref.name), signGrade(ref.signGrade), executeGrade(ref.executeGrade) {
     this->status = ref.status;
 }
 
@@ -38,15 +38,15 @@ bool Form::getStatus() const {
 }
 
 int Form::getSignGrade() const {
-    return this->sign_grade;
+    return this->signGrade;
 }
 
 int Form::getExecuteGrade() const {
-    return this->execute_grade;
+    return this->executeGrade;
 }
 
 void Form::beSigned(Bureaucrat bc) {
-    if (this->sign_grade >= bc.getGrade())
+    if (this->signGrade >= bc.getGrade())
         this->status = true;
     else
         throw GradeTooLowException();
