@@ -67,7 +67,7 @@ void ScalarConverter::convert(std::string str) {
 	else if (type == 0)
 		std::cout << "double: " << static_cast<double>(end[0]) << ".0" << std::endl;
 	else if (static_cast<int>(value) == value)
-		std::cout << "double: " << static_cast<double>(value) << ".0" << std::endl;
+		std::cout << "double: " << value << ".0" << std::endl;
 	else
 		std::cout << "double: " << value << std::endl;
 }
