@@ -11,7 +11,6 @@ typedef struct s_data {
 class Serializer {
 	private:
 		Serializer();
-
 	public:
 		~Serializer();
 		Serializer(const Serializer& ref);

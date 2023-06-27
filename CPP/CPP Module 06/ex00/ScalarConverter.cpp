@@ -29,7 +29,7 @@ void ScalarConverter::convert(std::string str) {
 	if (value == 0 && end == s)
 		type = 0;
 
-	if ((str.length() == 0) || (type == 0 && str.length() != 1) || end != s && end[0] != '\0' && (end[0] != 'f' || (end[0] == 'f' && end[1] != '\0'))) {
+	if ((str.length() == 0) || (type == 0 && str.length() != 1) || (end != s && end[0] != '\0' && (end[0] != 'f' || (end[0] == 'f' && end[1] != '\0')))) {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 		std::cout << "float: impossible" << std::endl;
@@ -45,9 +45,6 @@ void ScalarConverter::convert(std::string str) {
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: \'" << static_cast<char>(value) << "\'" << std::endl;
-
-	if (type == 0)
-		value = static_cast<double>(end[0]);
 
 	if (std::isnan(value) || std::isinf(value) || value > 2147483647 || value < -2147483648)
 		std::cout << "int: impossible" << std::endl;
