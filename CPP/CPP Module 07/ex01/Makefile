@@ -5,7 +5,7 @@ CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 RM			=	rm -rf
 
 # FILES
-SRCS	=	main.cpp iter.hpp
+SRCS	=	main.cpp
 OBJ_M		=	$(SRCS:.cpp=.o)
 
 #COMMANDS

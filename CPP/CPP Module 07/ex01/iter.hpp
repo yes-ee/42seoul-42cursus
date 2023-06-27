@@ -1,6 +1,9 @@
 #ifndef ITER_HPP
 # define ITER_HPP
 
+# include <cstddef>
+# include <iostream>
+
 template<typename T>
 void iter(T* array, size_t length, void (*fp)(T&)) {
 	for (size_t i = 0; i < length; i++) {
@@ -10,7 +13,7 @@ void iter(T* array, size_t length, void (*fp)(T&)) {
 
 template<typename T>
 void print(T& element) {
-	std::cout << element << std::endl;
+	std::cout << element << " ";
 }
 
 #endif
