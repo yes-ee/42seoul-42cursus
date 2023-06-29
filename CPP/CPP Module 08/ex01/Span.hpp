@@ -1,9 +1,11 @@
-#ifndef Span_HPP
-# define Span_HPP
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
 # include <iostream>
 # include <vector>
 # include <stdexcept>
+# include <cstdlib>
+# include <algorithm>
 
 class Span {
 	private:
@@ -18,8 +20,10 @@ class Span {
 		Span& operator=(const Span& ref);
 
 		void addNumber(int num);
-		int shortestSpan();
-		int longestSpan();
+		unsigned int shortestSpan();
+		unsigned int longestSpan();
+		void fillSpan();
+		unsigned int getLength();
 };
 
 #endif
