@@ -1,0 +1,13 @@
+# dockerfile을 읽어 이미지 생성, 컨테이너 생성을 자동화
+
+version: "3"
+
+services:
+  nginx:
+    # dockerfile 경로
+    build: requirements/nginx
+    image: nginximg
+    container_name: nginx
+    ports:
+      - 443:443
+    restart: always
