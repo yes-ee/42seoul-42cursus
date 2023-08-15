@@ -2,12 +2,24 @@
 
 version: "3"
 
+volumes:
+  db:
+    driver: local # 로컬 파일 시스템과 연결
+    driver_opts: # 추가 옵션 설정
+      type: none # 로컬 파일에 바인딩하는 경우 타입 지정 x
+      o: bind # 볼륨을 바인딩 할 것이다
+      device: ./${USER}/data/mariadb # 파일 시스템 경로 지정, 이 경로로 볼륨이 바인딩됨
+
 services:
-  # mariadb:
-  #   build: requirements/mariadb
-  #   image: mariadb
-  #   container_name: mariadb
-  #   restart: always
+  mariadb:
+    build: requirements/mariadb
+    image: mariadb
+    container_name: mariadb
+    env_file:
+      - ./.env
+    volumes:
+      - db:/var/lib/mysql
+    restart: always
 
   nginx:
     # dockerfile 경로
@@ -19,6 +31,7 @@ services:
       - 443:443
     restart: always
 
+  # wordpress:
 # networks:
 #   # 정의한 네트워크 이름
 #   inception:

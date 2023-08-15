@@ -49,8 +49,8 @@ COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 # ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 # dumb-init 먼저 실행
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT	["/usr/bin/dumb-init", "--"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 
 # 실행방법
 # docker build . -t nginximg
