@@ -3,11 +3,23 @@
 version: "3"
 
 services:
+  # mariadb:
+  #   build: requirements/mariadb
+  #   image: mariadb
+  #   container_name: mariadb
+  #   restart: always
+
   nginx:
     # dockerfile 경로
     build: requirements/nginx
-    image: nginximg
+    # 이 이름으로 이미 빌드된 이미지가 있는지 찾고, 없으면 빌드함
+    image: nginx
     container_name: nginx
     ports:
       - 443:443
     restart: always
+
+# networks:
+#   # 정의한 네트워크 이름
+#   inception:
+#     driver: bridge
