@@ -10,11 +10,12 @@ RUN apt-get update -y && \
 RUN apt-get install mariadb-server
 
 COPY ./tools/setup.sh /setup.sh
+# COPY ./conf/
 
 # 3306 포트로 내부에서만 연결 가능
 EXPOSE 3306
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-CMD ["mariadb"]
+# CMD ["mariadb"]
 
-# CMD ["sh", "/setup.sh"]
+CMD ["sh", "/setup.sh"]
