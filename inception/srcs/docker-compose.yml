@@ -8,13 +8,13 @@ volumes:
     driver_opts: # 추가 옵션 설정
       type: none # 로컬 파일에 바인딩하는 경우 타입 지정 x
       o: bind # 볼륨을 바인딩 할 것이다
-      device: ./${USER}/data/mariadb # 파일 시스템 경로 지정, 이 경로로 볼륨이 바인딩됨
+      device: /Users/yeselee/data/mariadb # 파일 시스템 경로 지정, 이 경로로 볼륨이 바인딩됨
   wp:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ./${USER}/data/wp
+      device: /Users/yeselee/data/wp
 
 services:
   mariadb:
@@ -26,6 +26,8 @@ services:
     volumes:
       - db:/var/lib/mysql
     restart: always
+    networks:
+      - intra
 
   nginx:
     # dockerfile 경로
@@ -38,7 +40,8 @@ services:
     restart: always
 
   # wordpress:
-# networks:
-#   # 정의한 네트워크 이름
-#   inception:
-#     driver: bridge
+
+networks:
+  # 정의한 네트워크 이름
+  intra:
+    driver: bridge

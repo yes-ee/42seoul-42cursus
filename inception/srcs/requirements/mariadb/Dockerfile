@@ -7,15 +7,24 @@ RUN apt-get update -y && \
 	apt-get upgrade -y && \
 	apt-get install -y dumb-init
 
-RUN apt-get install mariadb-server
+RUN apt-get install -y mariadb-server mariadb-client
 
+# 소유자, 그룹을 mysql로 변경
+RUN mkdir -p /var/run/mysqld && \
+	chown -R mysql:mysql /var/run/mysqld &&\
+	chmod 777 /var/run/mysqld
+
+# db, user, 권한 설정
 COPY ./tools/setup.sh /setup.sh
-# COPY ./conf/
+# 기본 설정
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
+
 
 # 3306 포트로 내부에서만 연결 가능
 EXPOSE 3306
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-# CMD ["mariadb"]
+
+# CMD ["mysqld"]
 
 CMD ["sh", "/setup.sh"]
