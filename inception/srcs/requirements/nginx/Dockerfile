@@ -13,10 +13,7 @@ RUN apt-get update -y && \
 RUN apt-get install -y nginx openssl
 
 # 인증에 필요한 키와 인증서 발급
-RUN openssl req -newkey rsa:4096 -days 365 -nodes -x509 \
--subj "/C=KR/ST=Seoul/L=Seoul/O=42Seoul/OU=Gon/CN=inception" \
--keyout /etc/ssl/private/inception.dev.key \
--out /etc/ssl/certs/inception.dev.crt
+RUN openssl req -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=KR/ST=Seoul/L=Seoul/O=42Seoul/OU=Gon/CN=inception" -keyout /etc/ssl/private/inception.dev.key -out /etc/ssl/certs/inception.dev.crt
 
 # key 파일, crt(인증서) 파일 위치 변경
 # RUN mv inception.dev.key /etc/ssl/private/
@@ -50,6 +47,7 @@ COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 
 # dumb-init 먼저 실행
 ENTRYPOINT	["/usr/bin/dumb-init", "--"]
+# CMD ["echo", "hello"]
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 
 # 실행방법
