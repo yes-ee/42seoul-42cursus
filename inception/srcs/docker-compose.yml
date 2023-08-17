@@ -29,6 +29,18 @@ services:
     networks:
       - intra
 
+  wordpress:
+    depends_on:
+      - mariadb
+    build: requirements/wordpress
+    image: wordpress
+    container_name: wordpress
+    volumes:
+      - wp:/var/lib/html
+    restart: always
+    networks:
+      - intra
+
   nginx:
     # dockerfile 경로
     build: requirements/nginx
