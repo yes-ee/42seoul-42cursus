@@ -15,12 +15,6 @@ RUN apt-get install -y nginx openssl
 # 인증에 필요한 키와 인증서 발급
 RUN openssl req -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=KR/ST=Seoul/L=Seoul/O=42Seoul/OU=Gon/CN=inception" -keyout /etc/ssl/private/inception.dev.key -out /etc/ssl/certs/inception.dev.crt
 
-# key 파일, crt(인증서) 파일 위치 변경
-# RUN mv inception.dev.key /etc/ssl/private/
-# RUN mv inception.dev.crt /etc/ssl/certs/
-# 권한 설정
-# RUN chmod 600 /etc/ssl/private/inception.dev.key /etc/ssl/certs/inception.dev.crt
-
 # 이 이미지가 해당 포트를 외부로 공개할 것임
 # 컨테이너에서 오픈하는 포트 의미
 # docker run -p로 포트를 명시하지 않으면 pwd호스트 포트와 자동으로 연결되지 않음
@@ -33,7 +27,7 @@ EXPOSE 443
 
 # conf 파일 nginx에 적용
 # 443 port로만 접속 가능하게 설정된 conf 파일
-COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
+COPY ./conf/default.conf /etc/nginx/sites-enabled/default
 
 # nginx 명령어 실행
 # -g로 nginx의 글로벌 설정 지정

@@ -1,21 +1,29 @@
 version: "3.3"
-    
+
+networks:
+  intra:
+    driver: bridge
+
 services:
   db:
     image: mysql:5.7
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - intra
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-    
+
   wordpress:
     depends_on:
       - db
     image: wordpress:latest
+    networks:
+      - intra
     volumes:
       - wordpress_data:/var/www/html
     ports:

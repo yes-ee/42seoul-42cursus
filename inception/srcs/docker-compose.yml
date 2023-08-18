@@ -44,6 +44,9 @@ services:
       - inception_network
 
   nginx:
+    depends_on:
+      - mariadb
+      - wordpress
     # dockerfile 경로
     build: ./requirements/nginx
     # 이 이름으로 이미 빌드된 이미지가 있는지 찾고, 없으면 빌드함
