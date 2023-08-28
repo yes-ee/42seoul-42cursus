@@ -1,69 +1,64 @@
-# dockerfile을 읽어 이미지 생성, 컨테이너 생성을 자동화
-
-version: "3"
-
-volumes:
-  db:
-    driver: local # 로컬 파일 시스템과 연결
-    driver_opts: # 추가 옵션 설정
-      type: none # 로컬 파일에 바인딩하는 경우 타입 지정 x
-      o: bind # 볼륨을 바인딩 할 것이다
-      device: ./yeselee/data/mariadb # 파일 시스템 경로 지정, 이 경로로 볼륨이 바인딩됨
-  wp:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./yeselee/data/wp
+version: '3.8'
 
 services:
   mariadb:
-    build: ./requirements/mariadb
-    image: mariadb
     container_name: mariadb
-    env_file:
-      - ./.env
+    build: requirements/mariadb
     volumes:
-      - db:/var/lib/mysql
-    restart: always
+      - md-data:/var/lib/mysql
     networks:
-      - inception_network
+      - inception
+    env_file:
+      - .env
+    restart: always
+    expose:
+      - "3306"
 
   wordpress:
     depends_on:
       - mariadb
-    build: requirements/wordpress
-    image: wordpress
     container_name: wordpress
-    env_file:
-      - ./.env
+    build: requirements/wordpress
     volumes:
-      - wp:/var/www/html/wordpress
-    restart: always
+      - wp-data:/var/www/html/wordpress
     networks:
-      - inception_network
+      - inception
+    env_file:
+      - .env
+    restart: always
+    expose:
+      - "9000"
 
   nginx:
     depends_on:
-      - mariadb
       - wordpress
-    # dockerfile 경로
-    build: ./requirements/nginx
-    # 이 이름으로 이미 빌드된 이미지가 있는지 찾고, 없으면 빌드함
-    image: nginx
     container_name: nginx
-    ports:
-      - 443:443
+    build: requirements/nginx
     volumes:
-      - wp:/var/www/html/wordpress
-    restart: always
+      - wp-data:/var/www/html/wordpress
     networks:
-      - inception_network
-
-  # wordpress:
+      - inception
+    env_file:
+      - .env
+    restart: always 
+    ports:
+      - "443:443"
 
 networks:
-  # 정의한 네트워크 이름
-  inception_network:
-    name: inception_network
+  inception:
     driver: bridge
+    name: inception
+    
+volumes:
+  md-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yeselee/data/mariadb
+  wp-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yeselee/data/wordpress
